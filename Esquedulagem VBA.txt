@@ -1,0 +1,18 @@
+Sub Ocultar_Turmas_Esquedulagem()
+
+Dim rng As Range, celula As Range, linha As Integer
+
+Application.ScreenUpdating = False
+
+Set rng = ActiveSheet.Range("G6:G67")
+
+For Each celula In rng
+    If celula = "0" Or celula = "" Then
+    celula.Select
+    ActiveCell.EntireRow.Hidden = True
+    End If
+Next celula
+
+Application.ScreenUpdating = True
+
+End Sub

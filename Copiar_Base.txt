@@ -1,0 +1,25 @@
+Attribute VB_Name = "Copiar_Base"
+Sub Copiar_Base()
+Dim wb As Workbook
+Dim ws As Sheets
+Dim A As String
+Dim B As String
+
+Application.DisplayAlerts = False
+Application.ScreenUpdating = False
+
+A = ThisWorkbook.Sheets("Sheet1").Range("B1").Text
+B = ThisWorkbook.Sheets("Sheet1").Range("B2").Text
+Set wb = Workbooks.Open("A:\GENTE_GESTAO\CONSULTORIA_DE_LOJA\PLANEJAMENTO_OPERACIONAL\0. ESCALA E INTERMITENTE\0. ESCALA PADRÃO 2021\99. Análise Fila\" & A & ".xlsm", , ReadOnly)
+
+
+wb.Activate
+wb.Sheets(B).Range("J24:Q54").Copy
+ThisWorkbook.Worksheets("BASE").Range("A1").Paste Link:=True
+
+wb.Close SaveChanges:=False
+
+Application.DisplayAlerts = True
+Application.ScreenUpdating = True
+
+End Sub

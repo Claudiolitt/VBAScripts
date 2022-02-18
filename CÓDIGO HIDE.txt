@@ -1,0 +1,40 @@
+Sub Ocultar_Turmas_Esquedulagem()
+
+Dim rng As Range, celula As Range
+
+Set rng = ActiveSheet.Range("G6:G67")
+
+For Each celula In rng
+    If celula = "0" Then
+    celula.Select
+    ActiveCell.EntireRow.Hidden = True
+    End If
+Next celula
+
+For Each celula In rng
+    If celula = "" Then
+    celula.Select
+    ActiveCell.EntireRow.Hidden = True
+    End If
+Next celula
+
+End Sub
+
+
+Sub Ocultar_Turmas_EscalaPadrão_FullTime_Solver()
+
+   Dim rng As Range, celula As Range
+
+Set rng = ActiveSheet.Range("C10:C" & Range("C" & Rows.Count).End(xlUp).Row)
+
+For Each celula In rng
+    If celula = "0" Then
+    celula.Select
+    ActiveCell.EntireRow.Hidden = True
+    End If
+Next celula
+    
+End Sub
+
+
+

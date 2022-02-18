@@ -1,0 +1,37 @@
+Attribute VB_Name = "Mandar_Email"
+Sub Envia_Emails()
+
+    Dim EnviarPara As String, Mensagem As String, Anexo As String
+    
+    Dim OutlookApp As Object
+    Dim OutlookMail As Object
+    Set OutlookApp = CreateObject("Outlook.Application")
+    Set OutlookMail = OutlookApp.CreateItem(0)
+    Anexo = ThisWorkbook.Sheets("Consultoria_Contatos").Range("D2").Value
+    
+    'With OutlookMail
+        '.Display
+    'End With
+    
+    'Mensagem = OutlookMail.Body
+    
+    With OutlookMail
+        .Display
+        .To = ThisWorkbook.Sheets("Consultoria_Contatos").Range("B2").Value
+        .CC = ""
+        .BCC = ""
+        .Subject = "GMD Material de Expediente e Condução"
+        '.Body = "Prezados," & vbNewLine & vbNewLine & "Gentileza notar em anexo, Farol de despesas com Material de Expediente e Condução atualizado"
+        .Attachments.Add Anexo
+        .BodyFormat = olFormatHTML
+        .HTMLBody = "<HTML><H4>Prezados,</H4><BODY> Gentileza notar em anexo, Farol de despesas com Material de Expediente e Condução atualizados. </BODY><FOOTER></FOOTER></HTML>" & .HTMLBody
+        .Send
+                
+    End With
+    
+    
+    Set OutlookMail = Nothing
+    Set OutlookApp = Nothing
+End Sub
+
+

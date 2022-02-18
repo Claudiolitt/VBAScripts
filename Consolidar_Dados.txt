@@ -1,0 +1,32 @@
+Attribute VB_Name = "Consolidar_Dados"
+Sub Consolidar_Dados()
+
+Dim I As Integer, wscount As Integer
+
+
+'Limpar Dados
+ThisWorkbook.Worksheets("BASE_FORECAST").Cells.Delete
+
+ThisWorkbook.Worksheets("SEGUNDA_FRACO").Range("A1:G1").Copy
+ThisWorkbook.Worksheets("BASE_FORECAST").Range("A1").PasteSpecial xlPasteValues
+
+'Copiar dados de todas as planilhas
+wscount = ThisWorkbook.Worksheets.Count
+For I = 6 To wscount
+ ThisWorkbook.Worksheets(I).Range("A2:F" & ThisWorkbook.Worksheets(I).Range("C" & Rows.Count).End(xlUp).Row).Copy
+ ThisWorkbook.Worksheets("BASE_FORECAST").Range("A" & ThisWorkbook.Worksheets("BASE_FORECAST").Range("A" & Rows.Count).End(xlUp).Offset(1, 0).Row).PasteSpecial Paste:=xlPasteValues
+ MsgBox ActiveWorkbook.Worksheets(I).Name
+Next I
+
+'ThisWorkbook.Worksheets("BASE_FORECAST").Select
+'Range("G2").Activate
+'ActiveCell.FormulaR1C1 = "=IFERROR(VLOOKUP(RC4,NOMENCLATURA!R1C6:R8C7,2,0),"""")"
+'    Range("G2").Select
+'    Selection.AutoFill Destination:=Range("G2:G" & ThisWorkbook.Worksheets("BASE_FORECAST").Range("A" & Rows.Count).End(xlUp).Row)
+'Range("H1").FormulaR1C1 = "ID2"
+'Range("H2").FormulaR1C1 = "=RC[-1]&RC[-6]&RC[-5]&RC[-3]"
+'    Range("H2").Select
+'    Selection.AutoFill Destination:=Range("H2:H" & ThisWorkbook.Worksheets("BASE_FORECAST").Range("A" & Rows.Count).End(xlUp).Row)
+    
+End Sub
+

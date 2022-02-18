@@ -1,0 +1,12 @@
+(lookupValue as any, lookupTable as table, lookupColumnName as text, returnColumnValue as text) =>
+let
+//lookupTable= Atk_Func,
+//lookupColumnName = "Nome",
+//returnColumnValue = "Loja",
+//lookupValue = 1,
+ colLookup = Table.Column(lookupTable, lookupColumnName),
+ colToReturn = Table.Column(lookupTable, returnColumnValue),
+ lookup = List.PositionOf(colLookup, lookupValue, 0),
+ Result = if lookup >=0 then colToReturn{lookup} else "Not found"
+in
+ Result
